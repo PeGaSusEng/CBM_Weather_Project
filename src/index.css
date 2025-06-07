@@ -1,0 +1,42 @@
+/* Setting Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Setting Web Agar Lebih Responsif*/
+html, body {
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+
+
+@keyframes glowPulse {
+  0% { stroke-width: 3; opacity: 0.8; }
+  50% { stroke-width: 6; opacity: 0.3; }
+  100% { stroke-width: 3; opacity: 0.8; }
+}
+
+.glow-pulse path {
+  stroke: #00ffff;
+  animation: glowPulse 2.5s infinite;
+  filter: drop-shadow(0 0 5px #00ffff) drop-shadow(0 0 10px #00ffff);
+}
+
+
+
+:root {
+  --font-roboto: 'Roboto', sans-serif;
+}
+
