@@ -29,7 +29,7 @@ export default function EnsamblePlot({ refreshTrigger }: Props) {
   const [data, setData] = useState<EnsembleData[]>([]);
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/ensemble_plot_data')
+    fetch('/api/ensemble_plot')
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error('Gagal memuat data ensambel:', err));

@@ -32,7 +32,7 @@ export default function GrafikHujan({ refreshTrigger }: Props) {
   const [dataAPI, setDataAPI] = useState<RainData[]>([]);
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/rain_forecast_series_36')
+    fetch('/api/rain_forecast_series_36')
       .then((res) => res.json())
       .then((data: RainData[]) => setDataAPI(data))
       .catch((err) => console.error('Gagal memuat data:', err));

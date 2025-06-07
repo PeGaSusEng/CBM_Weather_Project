@@ -14,7 +14,7 @@ export default function Tabel_Yes_No_36_Series( {refreshTrigger}: Props) {
   const [data, setData] = useState<HujanData[]>([]);
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/tabel_yes_no36')
+    fetch('/api/tabel_Yes_No_36')
       .then((res) => res.json())
       .then((json: HujanData[]) => setData(json))
       .catch((err) => console.error('Gagal mengambil data:', err));

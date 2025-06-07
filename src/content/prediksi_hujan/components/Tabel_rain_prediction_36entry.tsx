@@ -15,7 +15,7 @@ export default function TabelHujanPrediction({ refreshTrigger }: Props) {
   const [data, setData] = useState<CuacaData[]>([]);
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/tabel_cuaca_singkat36')
+    fetch('/api/tabel_cuaca_singkat_36')
       .then((res) => res.json())
       .then((json: CuacaData[]) => setData(json))
       .catch((err) => console.error('Gagal mengambil data:', err));

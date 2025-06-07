@@ -156,7 +156,7 @@ const PetaCBM = ({ refreshTrigger }: PetaCBMProps) => {
   };
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/tabel_cuaca_singkat8')
+    fetch('/api/tabel_cuaca_singkat_8')
       .then((res) => res.json())
       .then((data: CuacaTerbaru[]) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -231,7 +231,7 @@ const PetaCBM = ({ refreshTrigger }: PetaCBMProps) => {
         {zoomLevel < 16 && (
           <ImageOverlay
             bounds={bounds}
-            url="http://103.189.235.12:5000/api/image/latest"
+            url="/api/image"
             opacity={0.78}
           />
         )}

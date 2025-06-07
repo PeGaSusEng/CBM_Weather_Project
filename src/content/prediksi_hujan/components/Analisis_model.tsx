@@ -18,7 +18,7 @@ export default function AnalisisModel({refreshTrigger}: Props) {
   const [analisis, setAnalisis] = useState<React.ReactNode>('Memuat analisis...');
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/ensemble_plot_data')
+    fetch('/api/ensemble_plot')
       .then((res) => res.json())
       .then((json: EnsembleData[]) => {
         setData(json);

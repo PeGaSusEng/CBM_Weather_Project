@@ -11,7 +11,7 @@ export default function Siaga() {
 
   useEffect(() => {
     // Ambil data waktu dari ensemble_plot_data
-    fetch('http://103.189.235.12:5000/api/json/ensemble_plot_data')
+    fetch('/api/ensemble_plot')
       .then(res => res.json())
       .then(data => {
         if (data.length > 0) {
@@ -29,7 +29,7 @@ export default function Siaga() {
       });
 
     // Ambil data cuaca dari prediction/latest
-    fetch('http://103.189.235.12:5000/api/prediction/latest')
+    fetch('/api/latest')
       .then(res => res.json())
       .then(data => {
         const prob = data.probabilitas_hujan;

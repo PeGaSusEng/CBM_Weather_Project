@@ -48,7 +48,7 @@ export default function GrafikAwan({ refreshTrigger }: Props) {
   const [dataAwan, setDataAwan] = useState<DataAwan[]>([]);
 
   useEffect(() => {
-    fetch('http://103.189.235.12:5000/api/json/plot_cloud_series_36entry')
+    fetch('/api/plot_cloud_series_36entry')
       .then((res) => res.json())
       .then((data: DataAwan[]) => {
         const dataFiltered = data.filter((d) => d.jenis !== 'Tidak Teridentifikasi');

@@ -21,7 +21,7 @@ export default function TabelAwan({ refreshTrigger }: Props) {
     try {
       setLoading(true);
       const res = await fetch(
-        'http://103.189.235.12:5000/api/json/plot_cloud_series_8entry'
+        '/api/plot_cloud_series_8entry'
       );
       const json = await res.json();
       setData(json);

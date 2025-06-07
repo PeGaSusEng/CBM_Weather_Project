@@ -52,7 +52,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://103.189.235.12:5000/api/json/tabel_cuaca_singkat8");
+        const res = await fetch("/api/tabel_cuaca_singkat_8");
         const json: Prediksi[] = await res.json();
         const hash = JSON.stringify(json);
         if (prevData.current !== hash) {
@@ -72,7 +72,7 @@ export default function Home() {
   useEffect(() => {
     const ambilTanggal = async () => {
       try {
-        const res = await fetch("http://103.189.235.12:5000/api/prediction/latest");
+        const res = await fetch("/api/latest");
         const data = await res.json();
 
         const tanggal = new Date(data.timestamp.split("T")[0]);
