@@ -169,10 +169,10 @@ const PetaCBM = ({ refreshTrigger }: PetaCBMProps) => {
 
   useEffect(() => {
     const files = [
-      '/geojson/Majalaya_GeoJson.json',
-      '/geojson/Cikaroya_Majalaya_sekitarnya_GeoJson.json',
-      '/geojson/Ibun_Geojson.json',
-      '/geojson/Pacet_Geojson.json',
+      '/geojson/Majalaya.json',
+      '/geojson/Cikaroya_Majalaya_sekitarnya.json',
+      '/geojson/Ibun.json',
+      '/geojson/Pacet.json',
       '/geojson/gabung.json',
       '/geojson/gabung_2.json',
       '/geojson/gabung_3.json',
