@@ -31,7 +31,7 @@ export default function FeedbackForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://103.189.235.12:5000/api/feedback', {
+      const res = await fetch('/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

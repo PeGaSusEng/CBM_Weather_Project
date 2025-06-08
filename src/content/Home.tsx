@@ -121,48 +121,56 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex flex-wrap justify-center gap-4 w-full"
+              className="grid grid-cols-2 justify-items-center gap-4 w-full sm:flex sm:flex-wrap sm:justify-center"
             >
-              {data.map((item, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className={`${getCardColor(item.cuaca)} relative rounded-xl p-5 pb-6 h-[200px] text-center flex-shrink-0 flex flex-col items-center justify-between shadow-lg transition-all backdrop-blur-sm w-[200px] sm:w-[220px]`}
-                >
-                  <span className="absolute top-2 right-2 bg-white/90 text-blue-900 text-xs font-semibold px-2 py-1 rounded shadow-md">
-                    {item.curah_hujan}
-                  </span>
-
+              {data.map((item, index) => {
+                const isLastOdd = data.length % 2 === 1 && index === data.length - 1;
+                return (
                   <motion.div
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    key={index}
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className={`${getCardColor(item.cuaca)} relative rounded-xl p-5 pb-6 h-[200px] text-center flex flex-col items-center justify-between shadow-lg transition-all backdrop-blur-sm ${
+                      isLastOdd
+                        ? 'col-span-2 flex justify-center'
+                        : 'w-[140px]'
+                    } sm:w-[220px]`}
                   >
-                    <Image
-                      src={getImageByCuaca(item.cuaca, item.waktu)}
-                      alt={item.cuaca}
-                      width={80}
-                      height={80}
-                    />
+                    <span className="absolute top-2 right-2 bg-white/90 text-blue-900 text-xs font-semibold px-2 py-1 rounded shadow-md">
+                      {item.curah_hujan}
+                    </span>
+
+                    <motion.div
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                    >
+                      <Image
+                        src={getImageByCuaca(item.cuaca, item.waktu)}
+                        alt={item.cuaca}
+                        width={80}
+                        height={80}
+                      />
+                    </motion.div>
+
+                    <div className="mb-4">
+                      <p className="mt-2 text-base">{item.waktu} WIB</p>
+                      <p className="font-bold uppercase text-lg">{item.cuaca}</p>
+                    </div>
+
+                    <button
+                      onClick={() => router.push(`/Page_prediksi_hujan`)}
+                      className="text-sm text-white bg-white/20 hover:bg-white/30 px-3 py-1 rounded transition"
+                    >
+                      Detail
+                    </button>
                   </motion.div>
-
-                  <div className="mb-4">
-                    <p className="mt-2 text-base">{item.waktu} WIB</p>
-                    <p className="font-bold uppercase text-lg">{item.cuaca}</p>
-                  </div>
-
-                  <button
-                    onClick={() => router.push(`/Page_prediksi_hujan`)}
-                    className="text-sm text-white bg-white/20 hover:bg-white/30 px-3 py-1 rounded transition"
-                  >
-                    Detail
-                  </button>
-                </motion.div>
-              ))}
+                );
+              })}
             </motion.div>
           </AnimatePresence>
+
 
           {/* Tentang CBM */}
           <div className="bg-white/90 text-gray-900 rounded-xl px-6 py-5 mt-8 w-full max-w-xl text-center text-sm leading-snug shadow-md">
