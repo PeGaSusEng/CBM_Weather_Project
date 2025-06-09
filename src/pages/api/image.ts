@@ -11,7 +11,7 @@ export default async function api_image(req: NextApiRequest, res: NextApiRespons
     const buffer = await response.arrayBuffer();
 
     res.setHeader('Content-Type', 'image/png');
-    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.setHeader('Cache-Control', 'no-store');
     res.status(200).send(Buffer.from(buffer));
     
   } catch (error) {

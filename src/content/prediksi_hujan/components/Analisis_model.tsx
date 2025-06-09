@@ -22,27 +22,38 @@ export default function AnalisisModel({refreshTrigger}: Props) {
       .then((res) => res.json())
       .then((json: EnsembleData[]) => {
         setData(json);
-        generateAnalisis(json);
+        generateAnalisis(json); 
       })
       .catch((err) => console.error('Gagal fetch data:', err));
   }, [refreshTrigger]);
 
+  
   const generateAnalisis = (data: EnsembleData[]) => {
     if (data.length === 0) return;
 
     const waktu = data[0].waktu;
-    const rata2Hujan = data.reduce((sum, d) => sum + d.hujan, 0) / data.length;
-    const persenHujan = (rata2Hujan * 100).toFixed(1);
 
-    let tingkat = '';
-    if (rata2Hujan < 0.05) {
-      tingkat = 'kemungkinan hujan sangat kecil';
-    } else if (rata2Hujan < 0.2) {
-      tingkat = 'kemungkinan hujan rendah';
-    } else if (rata2Hujan < 0.5) {
-      tingkat = 'kemungkinan hujan sedang';
+    const totalHujan = data.reduce((sum, d) => sum + d.hujan, 0);
+    const totalTidakHujan = data.reduce((sum, d) => sum + d.tidak_hujan, 0);
+    const rataHujan = totalHujan / data.length;
+    const rataTidakHujan = totalTidakHujan / data.length;
+
+    const persenHujan = (rataHujan * 100).toFixed(1);
+    const persenTidakHujan = (rataTidakHujan * 100).toFixed(1);
+
+    const jumlahModelHujan = data.filter(d => d.hujan > d.tidak_hujan).length;
+
+    let klasifikasi = '';
+    if (jumlahModelHujan === 4 && rataHujan > 0.8) {
+      klasifikasi = 'kemungkinan hujan sangat tinggi';
+    } else if (jumlahModelHujan >= 3 && rataHujan > 0.5) {
+      klasifikasi = 'kemungkinan hujan tinggi';
+    } else if (jumlahModelHujan === 2) {
+      klasifikasi = 'kemungkinan hujan sedang';
+    } else if (jumlahModelHujan === 1 && rataHujan < 0.3) {
+      klasifikasi = 'kemungkinan hujan rendah';
     } else {
-      tingkat = 'kemungkinan hujan tinggi';
+      klasifikasi = 'kemungkinan besar tidak hujan';
     }
 
     setAnalisis(
@@ -50,8 +61,13 @@ export default function AnalisisModel({refreshTrigger}: Props) {
         <p className="font-semibold">Prediksi Cuaca Pukul {waktu} WIB</p>
         <p className="mt-1">
           Berdasarkan 4 model cuaca yang dikembangkan menggunakan metode{' '}
-          <em>Convolutional Neural Network (CNN)</em>, {tingkat}, dengan peluang hujan rata-rata sekitar{' '}
-          <strong>{persenHujan}%</strong>.
+          <em>Convolutional Neural Network (CNN)</em>, {klasifikasi}.{' '}
+          <br />
+          <span className="block mt-2">
+            Rata-rata peluang <strong>HUJAN</strong>: {persenHujan}% <br />
+            Rata-rata peluang <strong>TIDAK HUJAN</strong>: {persenTidakHujan}% <br />
+            Jumlah model memprediksi HUJAN: <strong>{jumlahModelHujan} dari 4 model</strong>
+          </span>
         </p>
       </div>
     );

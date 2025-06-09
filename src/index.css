@@ -21,20 +21,39 @@ body,
 }
 
 
-
-@keyframes glowPulse {
-  0% { stroke-width: 3; opacity: 0.8; }
-  50% { stroke-width: 6; opacity: 0.3; }
-  100% { stroke-width: 3; opacity: 0.8; }
+@keyframes cloud-bounce {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
 }
 
-.glow-pulse path {
-  stroke: #00ffff;
-  animation: glowPulse 2.5s infinite;
-  filter: drop-shadow(0 0 5px #00ffff) drop-shadow(0 0 10px #00ffff);
+@keyframes rain-dot {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) rotate(0deg);
+    opacity: 0;
+  }
 }
 
+.animate-cloud-bounce {
+  animation: cloud-bounce 12s ease-in-out infinite;
+}
 
+.animate-rain-dot {
+  animation: rain-dot 2s linear infinite;
+}
 
 :root {
   --font-roboto: 'Roboto', sans-serif;

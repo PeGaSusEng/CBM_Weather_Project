@@ -105,6 +105,9 @@ export default function GrafikAwan({ refreshTrigger }: Props) {
           size: 14,
         },
       },
+      datalabels: {
+        display: false, 
+      },
     },
     scales: {
       x: {

@@ -2,15 +2,19 @@
 
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const PetaCBM = dynamic(() => import('./components/Peta_weather'), { ssr: false });
 const GrafikAwan = dynamic(() => import('./components/Grafik_awan'), { ssr: false });
 const TabelAwan = dynamic(() => import('./components/Tabel_awan'), { ssr: false });
 const Legend_awan = dynamic(() => import('./components/Legenda_awan'), { ssr: false });
+const Videoawan = dynamic(()=> import('./components/video'), { ssr: false});
 
 export default function FuncDeteksiAwan() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [tanggalPrediksi, setTanggalPrediksi] = useState<string>('Memuat...');
+  const router = useRouter();
+  const [showVideo, setShowVideo] = useState(false);
 
   const handleRefresh = () => {
     setRefreshKey(prev => prev + 1);
@@ -58,21 +62,34 @@ export default function FuncDeteksiAwan() {
             <PetaCBM refreshTrigger={refreshKey} />
           </div>
 
-          {/* Tombol Refresh di Tengah */}
-          <div className="mt-10 flex flex-col items-center justify-center">
-            <button
-              onClick={handleRefresh}
-              className="text-2xl px-5 py-3 bg-blue-900 hover:bg-blue-600 text-white font-bold rounded-lg transition"
-            >
-              🔁
-            </button>
-            <span className="text-sm text-gray-700 mt-2">
-              Klik di sini untuk memuat ulang
-            </span>
+          {/* Tombol Aksi: Refresh & Lihat Data Awan */}
+          <div className="mt-10 flex flex-col items-center justify-center gap-3">
+            <div className="flex flex-row gap-x-8">
+              {/* Tombol Lihat Data Awan */}
+              <button
+                onClick={() => setShowVideo(true)}
+                className="text-sm md:text-base px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md transition shadow"
+              >
+                🛰️
+              </button>
+                {showVideo && <Videoawan onClose={() => setShowVideo(false)} refreshTrigger={refreshKey} />}
+              {/* Tombol Refresh */}
+              <button
+                onClick={handleRefresh}
+                className="text-2xl px-4 py-2 bg-blue-900 hover:bg-blue-700 text-white font-bold rounded-md transition shadow"
+              >
+                🔁
+              </button>
+            </div>
+
+            <div className="flex flex-row gap-4 text-sm text-gray-700">
+              <span>Citra awan terbaru dari satelit</span>
+              <span>•</span>
+              <span>Klik 🔁 untuk memuat ulang</span>
+            </div>
           </div>
 
-          {/* Baris: Legenda dan Box */}
-          {/* Legenda dan Deskripsi sejajar dan tinggi sama */}
+          {/* Legenda dan Deskripsi */}
           <div className="mt-8 w-full flex flex-col lg:flex-row gap-6 items-stretch">
             {/* Legenda Awan */}
             <div className="flex-1">

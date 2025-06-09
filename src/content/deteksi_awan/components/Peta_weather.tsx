@@ -231,7 +231,7 @@ const PetaCBM = ({ refreshTrigger }: PetaCBMProps) => {
         {zoomLevel < 16 && (
           <ImageOverlay
             bounds={bounds}
-            url="/api/image"
+            url={`/api/image?ts=${Date.now()}`}
             opacity={0.78}
           />
         )}

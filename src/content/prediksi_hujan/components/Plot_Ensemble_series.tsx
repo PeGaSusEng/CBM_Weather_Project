@@ -10,9 +10,10 @@ import {
   Legend,
   ChartOptions,
 } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels'; 
 import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, ChartDataLabels); 
 
 type EnsembleData = {
   waktu: string;
@@ -41,12 +42,12 @@ export default function EnsamblePlot({ refreshTrigger }: Props) {
       {
         label: 'Hujan',
         data: data.map((d) => d.hujan),
-        backgroundColor: 'rgba(59, 130, 246, 0.7)', // biru
+        backgroundColor: 'rgba(59, 130, 246, 0.7)',
       },
       {
         label: 'Tidak Hujan',
         data: data.map((d) => d.tidak_hujan),
-        backgroundColor: 'rgba(234, 179, 8, 0.7)', // kuning
+        backgroundColor: 'rgba(234, 179, 8, 0.7)',
       },
     ],
   };
@@ -59,9 +60,7 @@ export default function EnsamblePlot({ refreshTrigger }: Props) {
       legend: {
         position: 'top',
         labels: {
-          font: {
-            size: 14,
-          },
+          font: { size: 14 },
         },
       },
       tooltip: {
@@ -71,12 +70,11 @@ export default function EnsamblePlot({ refreshTrigger }: Props) {
             return `${context.dataset.label}: ${(value * 100).toFixed(2)}%`;
           },
         },
-        bodyFont: {
-          size: 13,
-        },
-        titleFont: {
-          size: 14,
-        },
+        bodyFont: { size: 13 },
+        titleFont: { size: 14 },
+      },
+      datalabels: {
+        display: false, 
       },
     },
     scales: {
@@ -86,34 +84,24 @@ export default function EnsamblePlot({ refreshTrigger }: Props) {
         title: {
           display: true,
           text: 'Probabilitas (%)',
-          font: {
-            size: 14,
-            weight : 'bold'
-          },
+          font: { size: 14, weight: 'bold' },
         },
         ticks: {
           callback: function (tickValue: string | number) {
             const value = typeof tickValue === 'number' ? tickValue : parseFloat(tickValue);
             return `${(value * 100).toFixed(0)}%`;
           },
-          font: {
-            size: 13,
-          },
+          font: { size: 13 },
         },
       },
       x: {
         title: {
           display: true,
           text: 'Model',
-          font: {
-            size: 14,
-            weight: 'bold'
-          },
+          font: { size: 14, weight: 'bold' },
         },
         ticks: {
-          font: {
-            size: 13,
-          },
+          font: { size: 13 },
         },
       },
     },
