@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState, useEffect } from 'react';
-import getVideoUrl from '@/pages/api/satelite'; 
+import getVideoUrl from '@/utils/satelite'; 
 
 type Props = {
   onClose: () => void;
