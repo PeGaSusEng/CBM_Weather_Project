@@ -72,7 +72,17 @@ export default function FuncDeteksiAwan() {
               >
                 🛰️
               </button>
-                {showVideo && <Videoawan onClose={() => setShowVideo(false)} refreshTrigger={refreshKey} />}
+              {showVideo && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
+                  {/* Overlay blur */}
+                  <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9998]" />
+
+                  {/* Modal Video */}
+                  <div className="relative z-[9999]">
+                    <Videoawan onClose={() => setShowVideo(false)} refreshTrigger={refreshKey} />
+                  </div>
+                </div>
+              )}
               {/* Tombol Refresh */}
               <button
                 onClick={handleRefresh}

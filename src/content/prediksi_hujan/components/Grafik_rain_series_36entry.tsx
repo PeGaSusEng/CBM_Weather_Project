@@ -67,7 +67,7 @@ export default function GrafikHujan({ refreshTrigger }: Props) {
         spanGaps: true,
       },
       {
-        label: 'AMBANG BATAS',
+        label: 'AMBANG BATAS HUJAN',
         data: thresholdLine,
         borderColor: 'rgba(104, 25, 25, 0.4)',
         borderDash: [8, 4],
@@ -97,7 +97,7 @@ export default function GrafikHujan({ refreshTrigger }: Props) {
         max: 1,
         title: {
           display: true,
-          text: 'Probabilitas',
+          text: 'Probabilitas Hujan',
           font: { size: 16, weight: 'bold' },
         },
         ticks: { font: { size: 15 } },
@@ -119,7 +119,7 @@ export default function GrafikHujan({ refreshTrigger }: Props) {
   return (
     <div className="w-full h-[700px] bg-white shadow-lg rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
       <h2 className="text-xl font-semibold mb-4 text-center text-gray-800 z-20 relative">
-        Grafik Prediksi Hujan vs Tidak Hujan
+        Prediksi Probabilitas Hujan vs Tidak Hujan
       </h2>
 
       {adaHujan && (

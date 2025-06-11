@@ -58,7 +58,7 @@ export default function Siaga() {
       <div className="space-y-2 text-base md:text-lg">
         <p>🕒 Prediksi: <span className="font-semibold">{jamPrediksi}</span></p>
         <p>🕒 Data Update: <span className="font-semibold">{jamPrediksiMinus30}</span></p>
-        <p>🌡️ Probabilitas: <span className="font-semibold">{probabilitasHujan !== null ? `${(probabilitasHujan * 100).toFixed(1)}%` : 'Memuat...'}</span></p>
+        <p>🌡️ Probabilitas Hujan: <span className="font-semibold">{probabilitasHujan !== null ? `${(probabilitasHujan * 100).toFixed(1)}%` : 'Memuat...'}</span></p>
         <p>
           🌧️ Status:{' '}
           <span className={`font-semibold ${isSiaga ? 'text-red-600' : 'text-green-600'}`}>
