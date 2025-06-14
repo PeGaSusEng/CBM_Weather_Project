@@ -43,7 +43,7 @@ const VelocityLayer = ({ data }: VelocityLayerProps) => {
         },
         data,
         maxVelocity: 5,
-        velocityScale: 0.015,
+        velocityScale: 0.02,
         colorScale: ['#76B852', '#FDD835', '#EF5350'],
       });
 
@@ -69,12 +69,15 @@ const ZoomToRedArea = ({ setMap }: ZoomProps) => {
     map.whenReady(() => {
       setMap(map);
       map.invalidateSize();
-      map.fitBounds(bounds, { padding: [10, 10] });
+      setTimeout(() => {
+        map.fitBounds(bounds, { padding: [10, 10] });
+      }, 100); 
     });
   }, [map, setMap]);
 
   return null;
 };
+
 
 const googleMapsLayer = L.tileLayer(
   'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
@@ -202,11 +205,10 @@ const PetaCBM = ({ refreshTrigger }: PetaCBMProps) => {
   }
 
   return (
-    <div className="relative w-full h-full">
+    <div style={{ height: "550px", width: "100%" }}>
       <MapContainer
         style={{ height: '100%', width: '100%' }}
-        center={[-7.1, 107.76]}
-        zoom={12}
+        bounds={bounds}
         scrollWheelZoom={true}
         zoomControl={true}
         maxBounds={bounds}

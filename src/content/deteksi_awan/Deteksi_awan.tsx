@@ -112,7 +112,7 @@ export default function FuncDeteksiAwan() {
             <div className="flex-1">
               <div className="h-full bg-gray-100 p-4 rounded-xl shadow-inner text-gray-700 text-sm text-justify leading-relaxed flex items-center mb-18 shadow-lg">
                 <p>
-                  Peta memperlihatkan kondisi perkiraan cuaca dari model, sedangkan tabel menunjukkan hasil klasifikasi citra awan. Kecepatan angin yang ditampilkan bersumber dari data simulasi, bukan observasi langsung.
+                  Peta memperlihatkan kondisi perkiraan cuaca dari model, sedangkan tabel menunjukkan hasil klasifikasi citra awan. Kecepatan angin yang ditampilkan bersumber dari data simulasi angin lokal permukaan, bukan observasi langsung.
                 </p>
               </div>
             </div>
